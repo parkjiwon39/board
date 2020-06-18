@@ -54,7 +54,7 @@ public class BoardDAO {
 	//전체 리스트 가져오기
 	//번호,제목,작성자,날짜,조회수
 	public List<BoardVO> getList(){
-		String sql = "select bno,title,name,regdate,readcount"+" from board order by bno desc";
+		String sql = "select bno,title,name,regdate,readcount from board order by bno desc";
 		List<BoardVO> list = new ArrayList<BoardVO>();
 		try(Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);) {		
@@ -64,8 +64,8 @@ public class BoardDAO {
 					BoardVO vo = new BoardVO();
 					vo.setBno(rs.getInt(1));
 					vo.setTitle(rs.getString(2));
-					vo.setContent(rs.getString(3));
-					vo.setRegdate(rs.getDate(4));
+					vo.setName(rs.getString(3));
+					vo.setRegdate(rs.getDate(4));					
 					vo.setReadcount(rs.getInt(5));
 					list.add(vo);
 				}

@@ -17,7 +17,7 @@ $(function(){
 				required:true
 			},
 			attach:{
-				extension:"txt|png|jpg|gif",
+				extension:"txt|png|jpg|gif|hwp",
 				maxsizetotal:2097152
 			}
 		},
