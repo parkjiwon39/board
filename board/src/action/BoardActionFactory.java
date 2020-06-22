@@ -18,6 +18,20 @@ public class BoardActionFactory {
 			action = new ListAction("view/qna_board_list.jsp");
 		}else if(cmd.equals("/view.do")) {
 			action = new ViewAction("view/qna_board_view.jsp");
+		}else if(cmd.equals("/modify.do")) {
+			action = new ModifyAction("view/qna_board_modify.jsp");
+		}else if(cmd.equals("/update.do")) {
+			action = new UpdateAction("/view.do");
+		}else if(cmd.equals("/hitupdate.do")) {
+			action = new HitUpdateAction("/view.do");
+		}else if(cmd.equals("/delete.do")) {
+			action = new DeleteAction("/list.do");		
+		}else if(cmd.equals("/replyView.do")) {
+			action = new ReplyViewAction("view/qna_board_reply.jsp");
+		}else if(cmd.equals("/reply.do")) {
+			action = new ReplyAction("/list.do");
+		}else if(cmd.equals("/search.do")) {
+			action = new SearchAction("view/qna_board_list.jsp");
 		}
 		return action;
 	}
