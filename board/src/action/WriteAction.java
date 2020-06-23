@@ -30,6 +30,10 @@ public class WriteAction implements Action{
 		String password = uploadMap.get("password");
 		String attach = uploadMap.get("attach");
 		
+		//페이지 1 / criteria, keyword == ""
+		String page = "1";
+		String criteria ="";
+		String keyword = "";
 		
 		//DB작업
 		BoardDAO dao = new BoardDAO();

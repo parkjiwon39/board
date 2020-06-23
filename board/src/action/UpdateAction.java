@@ -1,5 +1,6 @@
 package action;
 
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,7 +30,13 @@ public class UpdateAction implements Action {
 		String title = uploadMap.get("title");
 		String content = uploadMap.get("content");
 		String password = uploadMap.get("password");		
-		String attach = uploadMap.get("attach");	
+		String attach = uploadMap.get("attach");
+		
+		//페이지 나누기 추가
+		String page = uploadMap.get("page");
+		String criteria = uploadMap.get("criteria");
+		String keyword = URLEncoder.encode(uploadMap.get("keyword"),"utf-8");
+					
 		
 		//DB작업
 		BoardVO vo = new BoardVO();	
@@ -45,9 +52,9 @@ public class UpdateAction implements Action {
 		BoardDAO dao = new BoardDAO();
 		int result = dao.updateRow(vo);
 		if(result>0) {
-			path+="?bno="+bno;
+			path+="?bno="+bno+"&page="+page+"&criteria="+criteria+"&keyword="+keyword;
 		}else {
-			path="modify.do?bno="+bno;
+			path="modify.do?bno="+bno+"&page="+page+"&criteria="+criteria+"&keyword="+keyword;
 		}
 		
 		return new ActionForward(path, true);

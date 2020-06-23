@@ -62,6 +62,9 @@
 </section>
 <form method="post" role="form">
 	<input type="hidden" name="bno" value="${vo.bno}"/>
+	<input type="hidden" name="page" value="${search.page}"/>
+	<input type="hidden" name="criteria" value="${search.criteria}"/>
+	<input type="hidden" name="keyword" value="${search.keyword}"/>
 </form>
 <script>
 $(function(){
@@ -69,7 +72,7 @@ $(function(){
 	let formObj = $("form[role='form']");
 	
 	$("#list").click(function(){
-		location.href="list.do";
+		location.href=("action","list.do");
 	})
 	$("#modify").click(function(){
 		formObj.attr("action","modify.do");

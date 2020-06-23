@@ -12,14 +12,14 @@
 				<input type="button" class="btn btn-success" value="새글작성" onclick="location.href='view/qna_board_write.jsp'"/>
 			</div><!--글쓰기 버튼-->
 			<div class="col-md-4 offset-md-4"><!--검색 들어갈 부분-->
-			<form action="search.do" method="post" id="search">
+			<form action="list.do" method="post" id="search">
 				<select name="criteria" id="">
-					<option value="n" <c:out value="${search.criteria==null?'selected':''}"/>>-------</option>
-					<option value="title" <c:out value="${search.criteria=='title'?'selected':''}"/>>title</option>
-					<option value="content" <c:out value="${search.criteria=='content'?'selected':''}"/>>content</option>
-					<option value="name" <c:out value="${search.criteria=='name'?'selected':''}"/>>name</option>
+					<option value="n" <c:out value="${pageVO.search.criteria==null?'selected':''}"/>>-------</option>
+					<option value="title" <c:out value="${pageVO.search.criteria=='title'?'selected':''}"/>>title</option>
+					<option value="content" <c:out value="${pageVO.search.criteria=='content'?'selected':''}"/>>content</option>
+					<option value="name" <c:out value="${pageVO.search.criteria=='name'?'selected':''}"/>>name</option>
 				</select>
-				<input type="text" name="keyword" value="${search.keyword}"/>
+				<input type="text" name="keyword" value="${pageVO.search.keyword}"/>
 				<button type="button" class="btn btn-primary">검색</button>
 			</form>
 			</div>
@@ -42,7 +42,7 @@
 							&nbsp;
 						</c:forEach>
 					</c:if>
-					<a href="hitupdate.do?bno=${vo.bno}">${vo.title}</a>
+					<a href="hitupdate.do?bno=${vo.bno}&page=${pageVO.search.page}&criteria=${pageVO.search.criteria}&keyword=${pageVO.search.keyword}">${vo.title}</a>
 				</td><!--제목-->
 				<td class='text-center'>${vo.name}</td><!--작성자-->
 				<td class='text-center'>${vo.regdate}</td><!--날짜-->
@@ -54,7 +54,30 @@
 			<div class="row  justify-content-md-center">
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination"><!--하단의 페이지 나누기 부분-->
-
+					<c:if test="${pageVO.prev}">
+						<li class="page-item">
+							<a href="list.do?page=${pageVO.search.page-1}&criteria=${pageVO.search.criteria}&keyword=${pageVO.search.keyword}" class="page-link">Previous</a>
+						</li>
+					</c:if>
+					<c:forEach begin="${pageVO.startPage}" end="${pageVO.endPage}" var="idx">						
+						<c:choose>
+							<c:when test="${pageVO.search.page==idx}">
+								<li class="page-item active">
+									<a class="page-link">${idx}</a>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item">
+									<a class="page-link" href="list.do?page=${idx}&criteria=${pageVO.search.criteria}&keyword=${pageVO.search.keyword}">${idx}</a>
+								</li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${pageVO.next}">
+						<li class="page-item">
+							<a href="list.do?page=${pageVO.search.page+1}&criteria=${pageVO.search.criteria}&keyword=${pageVO.search.keyword}" class="page-lick">Next</a>
+						</li>
+					</c:if>
 				  </ul>
 				</nav>					
 			</div>

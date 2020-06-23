@@ -50,6 +50,10 @@
 			<input type="hidden" name="re_ref" value="${vo.re_ref}"/>
 			<input type="hidden" name="re_lev" value="${vo.re_lev}"/>
 			<input type="hidden" name="re_seq" value="${vo.re_seq}"/>
+			
+			<input type="hidden" name="page" value="${search.page}"/>
+			<input type="hidden" name="criteria" value="${search.criteria}"/>
+			<input type="hidden" name="keyword" value="${search.keyword}"/>
 		</form>
 	</div>
 </section>
